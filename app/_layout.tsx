@@ -9,6 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { Client, Account, ID } from "react-native-appwrite";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -16,6 +17,11 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  // install Client appWrite
+  const client = new Client()
+    .setProject("67c0eae7002e16dea328")
+    .setPlatform("ait.edu.apptest");
+
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
