@@ -10,6 +10,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
 
   // useEffect(() => {}, []);
   useEffect(() => {
@@ -20,6 +21,14 @@ export default function Signup() {
       setValidPassword(false);
     }
   }, [password]);
+
+  useEffect(() => {
+    if (email.includes("@") && email.indexOf("@") > 0) {
+      setValidEmail(true);
+    } else {
+      setValidEmail(false);
+    }
+  }, [email]);
 
   return (
     <SafeAreaView style={styles.container}>

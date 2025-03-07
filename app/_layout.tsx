@@ -7,9 +7,10 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useEffect, useState, useContext, createContext } from "react";
 import "react-native-reanimated";
-import { Client, Account, ID } from "react-native-appwrite";
+import { ID } from "react-native-appwrite";
+import { account, databases } from "@/lib/appwrite";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -17,10 +18,12 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  // install Client appWrite
-  const client = new Client()
-    .setProject("67c0eae7002e16dea328")
-    .setPlatform("ait.edu.apptest");
+  // const [auth, setAuth] = useState<boolean>(null);
+
+  // sign up
+  // const signUp = async (email: string, password: string) => {
+  //   await account.create(ID.unique(), email, password);
+  // };
 
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -39,11 +42,10 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      {/* <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack> */}
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="signup" />
+      </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
